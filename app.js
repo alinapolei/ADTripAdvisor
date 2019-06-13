@@ -4,8 +4,8 @@ let app = angular.module('myApp', ["ngRoute"]);
 app.config(function($routeProvider)  {
     $routeProvider
         // homepage
-        .when('/', {
-            templateUrl: 'pages/mainScreen/guestUser/gustScreen.html',
+        .when('/home', {
+            templateUrl: 'pages/mainScreen/gusetUser/guestScreen.html',
             controller : 'userController as uCtrl'
         })
 
@@ -21,9 +21,9 @@ app.config(function($routeProvider)  {
         controller : 'loginController as loginCtrl'
     })
         .when('/user/register', {
-            templateUrl: 'pages/user/userLogin/register.html',
+            templateUrl: 'pages/user/register/register.html',
             controller : 'regController as regCtrl'
         })
 
-        .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/home' });
 });
