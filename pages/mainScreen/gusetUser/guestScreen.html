@@ -1,5 +1,5 @@
-<div>
-    <img ng-style="{'height': '250px'}" ng-src="{{points.main_photo}}"/><br>
-    <label class="pointName" ng-bind="points.name"></label></br>
-    id: <label ng-bind="points.poi_id"></label></br>
+<div ng-repeat="point in points">
+    <img ng-style="{'height': '250px'}" ng-src="{{point.main_photo}}"/><br>
+    <label class="pointName" ng-bind="point.name"></label></br>
+    id: <label ng-bind="point.poi_id"></label></br>
 </div>
