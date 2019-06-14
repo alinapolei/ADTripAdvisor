@@ -1,7 +1,7 @@
 angular.module("myApp")
     .controller("loginController", function ($scope, $http, $window) {
-        $scope.usename;
-        $scope.password;
+       // $scope.username;
+        //$scope.password;
 
         $scope.submit = function(isValid){
             if(isValid){

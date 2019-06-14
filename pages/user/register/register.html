@@ -16,93 +16,118 @@
     <div class="container-login100">
         <div class="wrap-login100">
 
-            <form class="login100-form validate-form">
+            <form id="registerForm" style="margin: auto" class="login100-form validate-form" name ="registerForm" ng-submit="submit(registerForm.$valid)" novalidate>
                         <span class="login100-form-title">
                            Register
                         </span>
+                <span ng-show="registerForm.username.$error.required&& (registerForm.username.$dirty || isClicked)" class="errorText"> Username is required.</span>
+                <span ng-show="registerForm.username.$error.minlength" class="errorText"> Username is too short.</span>
+                <span ng-show="registerForm.username.$error.maxlength" class="errorText"> Username is too long.</span>
+                <span ng-show="registerForm.username.$error.pattern" class="errorText"> Username must contain only letter.</span>
 
-                <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="username" placeholder="Username">
+                <div class="wrap-input100 validate-input" >
+                    <input class="input100" type="text" name="username" placeholder="Username" ng-model="username"
+                           ng-class="{ 'has-error' : registerForm.username.$error.required && (registerForm.username.$dirty || isClicked) }"  ng-pattern ="/^[a-zA-Z\s]*$/" ng-required="true" ng-minlength="3" ng-maxlength="8">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
                 </div>
 
-                <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="firstName" placeholder="First name">
+
+                <span ng-show="registerForm.firstName.$invalid && (registerForm.firstName.$dirty || isClicked)" class="errorText">first Name is required.</span>
+                <div class="wrap-input100 validate-input" >
+                    <input class="input100" type="text" name="firstName" placeholder="first Name" ng-model="firstName"
+                           ng-class="{ 'has-error' : registerForm.firstName.$invalid && (registerForm.firstName.$dirty || isClicked) }" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
                 </div>
 
-                <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="lastName" placeholder="Last name">
+                <span ng-show="registerForm.lastName.$invalid && (registerForm.lastName.$dirty || isClicked)" class="errorText">Last Name is required.</span>
+                <div class="wrap-input100 validate-input" >
+                    <input class="input100" type="text" name="lastName" placeholder="Last Name" ng-model="lastName"
+                           ng-class="{ 'has-error' : registerForm.lastName.$invalid && (registerForm.lastName.$dirty || isClicked) }" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
                 </div>
 
-                <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="city" placeholder="City">
+                <span ng-show="registerForm.city.$invalid && (registerForm.city.$dirty || isClicked)" class="errorText">city is required.</span>
+                <div class="wrap-input100 validate-input" >
+                    <input class="input100" type="text" name="city" placeholder="city " ng-model="city"
+                           ng-class="{ 'has-error' : registerForm.city.$invalid && (registerForm.city.$dirty || isClicked) }" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
                 </div>
 
                 <div class="wrap-input100 validate-input">
                     <label for="Country">Choose your country: </label>
-                    <select id ="Country" class="input100" ng-model="selectedName" ng-options="x for x in countries" >
+                    <select id ="Country" name="country" class="input100" ng-model="country" ng-options="x for x in countries" >
                     </select>
                 </div>
 
+                <span ng-show="registerForm.email.$error.required && (registerForm.email.$dirty || isClicked)" class="errorText">email is required.</span>
+                <span ng-show="registerForm.email.$invalid && !registerForm.email.$pristine" class="errorText">Enter a valid email.</span>
+                <div class="wrap-input100 validate-input">
+                    <input type="email" name="email" class="input100" ng-model="email" placeholder="Email"
+                           ng-class="{ 'has-error' : registerForm.email.$error.required  && (registerForm.email.$dirty || isClicked) }" ng-required="true">
+                </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email" placeholder="Email">
+
+
+                <span ng-show="registerForm.password.$error.required&& (registerForm.password.$dirty || isClicked) " class="errorText"> Password is required.</span>
+                <span ng-show="registerForm.password.$error.minlength" class="errorText"> Password is too short.</span>
+                <span ng-show="registerForm.password.$error.maxlength" class="errorText"> Password is too long.</span>
+                <span ng-show="registerForm.password.$error.pattern" class="errorText"> Password must contain only number and letter .</span>
+                <div class="wrap-input100 validate-input" >
+                    <input class="input100" type="text" name="password" placeholder="password " ng-model="password"
+                           ng-class="{ 'has-error' : registerForm.password.$error.required && (registerForm.password.$dirty || isClicked) }"  ng-pattern ="/^[a-zA-Z0-9\s]*$/" ng-required="true" ng-minlength="5" ng-maxlength="10">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <i class="fa fa-user" aria-hidden="true"></i>
                     </span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                    <input class="input100" type="password" name="pass" placeholder="Password">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                            </span>
-                </div>
 
-
-                <div class="wrap-input100 validate-input">
+                <span ng-show="registerForm.quest1.$invalid && (registerForm.quest1.$dirty || isClicked)" class="errorText">quest1 answer is required.</span>
+                <div class="wrap-input100 validate-input" >
                     <label style="width: 450px" for="quest1" > Question 1: what was your childhood nickname?  </label>
-                    <input id="quest1" class="input100" type="text" name="quest1" placeholder="answer">
+                    <input id ="quest1" class="input100" type="text" name="quest1" placeholder="answer " ng-model="quest1"
+                           ng-class="{ 'has-error' : registerForm.quest1.$invalid && (registerForm.quest1.$dirty || isClicked) }" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
                 </div>
 
-                <div class="wrap-input100 validate-input">
+
+                <span ng-show="registerForm.quest2.$invalid && (registerForm.quest2.$dirty || isClicked)" class="errorText">quest2 answer is required.</span>
+                <div class="wrap-input100 validate-input" >
                     <label style="width: 450px" for="quest2">Question 2: Do you want to retake this course? </label>
-                    <input id="quest2" class="input100" type="text" name="quest2" placeholder="answer">
+                    <input id ="quest2" class="input100" type="text" name="quest2" placeholder="answer " ng-model="quest2"
+                           ng-class="{ 'has-error' : registerForm.quest2.$invalid && (registerForm.quest2.$dirty || isClicked) }" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
                 </div>
 
+                <div>
+                    <label for="InterPoint">Choose at least 2 Interest Point</label>
+                    <label id="InterPoint" ng-repeat="x in intPoint">
+                        <input ng-click="toggleSelection(x)" ng-checked="exist(x)"  type="checkbox" ng-model="selectedIntPoint" name="intPoints" style="margin-left: 25px" checklist-value="x"> {{x}}
 
-
-
+                    </label>
+                </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        create my account
-                    </button>
+                    <input class="login100-form-btn" type="submit" id="submit" value="create my account" ng-click="isClicked=true">
+                    </input>
                 </div>
 
             </form>

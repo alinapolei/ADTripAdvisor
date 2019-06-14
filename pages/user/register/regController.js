@@ -5,9 +5,44 @@ angular.module("myApp" )
         .then(function(response) {
             $scope.countries = response.data;
         });
-        $http.get(serverUrl + "/getQuestions")
+        $http.get(serverUrl + "/getInterests")
             .then(function(response) {
-                $scope.quest = response.data;
+                $scope.intPoint = response.data;
+
             });
 
+        $scope.selected=[];
+        $scope.exist =function(item){
+            return $scope.selected.indexOf(item)>-1;
+        }
+
+        $scope.toggleSelection =function(item){
+            var idx =$scope.selected.indexOf(item);
+            if(idx>-1){
+                $scope.selected.splice(idx,1);
+            }
+            else {
+                $scope.selected.push(item);
+            }
+        }
+
+        $scope.submit = function(isValid) {
+            var questions =["what was your childhood nickname?","Do you want to retake this course?"]
+            if (isValid) {
+              var req=  {username: $scope.username,
+                    firstName: $scope.firstName,
+                    lastName: $scope.lastName,
+                    city:$scope.city,
+                    country:$scope.country,
+                    email: $scope.email,
+                    password:$scope.password,
+                    question:questions,
+                    answer:[$scope.quest1,$scope.quest2],
+                    interests :$scope.selected,
+              };
+                console.log(req);
+            }
+            else
+                console.log("eror");
+        }
 });
