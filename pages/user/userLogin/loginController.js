@@ -5,9 +5,11 @@ angular.module("myApp")
         $scope.submit = function(isValid){
             if(isValid){
                 alert($scope.username + " " + $scope.password);
-                $http.post('/login', {
+                var user =[{
                     username : $scope.username,
-                    password : $scope.password})
+                    password : $scope.password}]
+                console.log(user)
+                $http.post('/login', user)
                     .then(
                         function () {$window.alert("good");},
                         function () {$window.alert("error");});

@@ -29,16 +29,17 @@ angular.module("myApp" )
         $scope.submit = function(isValid) {
             var questions =["what was your childhood nickname?","Do you want to retake this course?"]
             if (isValid) {
-              var req=  {username: $scope.username,
-                    firstName: $scope.firstName,
-                    lastName: $scope.lastName,
+              var req=  {
+                    firstname: $scope.firstName,
+                    lastname:$scope.lastName,
                     city:$scope.city,
                     country:$scope.country,
                     email: $scope.email,
+                    username:$scope.username,
                     password:$scope.password,
                     question:questions,
-                    answer:[$scope.quest1,$scope.quest2],
-                    interests :$scope.selected,
+                    answer: [$scope.quest1,$scope.quest2],
+                    interests : $scope.selected,
               };
                 console.log(req);
             }
