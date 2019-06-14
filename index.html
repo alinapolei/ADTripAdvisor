@@ -17,8 +17,19 @@
 <html>
 <head>
     <title>My Website</title>
+    <link rel="stylesheet" type="text/css" href="pages/user/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="pages/user/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="pages/user/vendor/animate/animate.css">-->
+    <link rel="stylesheet" type="text/css" href="pages/user/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="pages/user/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="pages/user/css/util.css">
+    <link rel="stylesheet" type="text/css" href="pages/user/css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="pages/user/css/util.css">
+    <link rel="stylesheet" type="text/css" href="pages/user/css/main.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="mainController">
 <!-- load angular -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
 <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
@@ -35,24 +46,32 @@
 <script src="pages/user/register/regController.js"></script>
 
 <!-- the website -->
-<h1>Amsterdam</h1>
+<h1 class="topBar" id="title">Amsterdam</h1>
 
-<!-- menu -->
-<ul>
-    <li>
-        <a href="#!home">Home</a>
-    </li>
-    <li>
-        <a href="#!about">About</a>
-    </li>
-    <li>
-        <a href="#!user/userLogin">login</a>
-    </li>
-    <li>
-        <a href="#!user/register">register</a>
-    </li>
-</ul>
+<div id="menuRow">
+    <!-- menu -->
+    <ul id="menu" class="topBar">
+        <li>
+            <a href="#!home" ng-class="getClass('/home')" class="menu">Home</a>
+        </li>
+        <li>
+            <a href="#!about" ng-class="getClass('/about')" class="menu">About</a>
+        </li>
+    </ul>
 
+    <div style="width: 115px">
+        <label style="margin-bottom: 0px; font-size: 13px;">Hello guest</label>
+        <div>
+            <a class="txt2" href="#!user/userLogin">
+                login
+            </a>
+            <label style="font-size: 8px; margin-bottom: 0px">/</label>
+            <a class="txt2" href="#!user/register">
+                register
+            </a>
+        </div>
+    </div>
+</div>
 <!-- This section changes as the hashbang changes -->
 <div ng-view></div>
 </body>
