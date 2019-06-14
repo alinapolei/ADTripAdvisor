@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
     <link rel="stylesheet" type="text/css" href="pages/user/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="pages/user/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -16,29 +14,33 @@
 
                 <div class="text-center p-t-136">
                     <span class="login100-form-title">
-                        Create an acount
+                        Not a member?
                     </span>
-                    <a class="txt2" href="#">
+                    <a class="txt2" href="#!user/register">
                         Create your Account
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
                 </div>
 
-                <form class="login100-form validate-form">
+                <form class="login100-form validate-form" name="loginForm" ng-submit="submit(loginForm.$valid)" novalidate>
                         <span class="login100-form-title">
                             Member Login
                         </span>
 
-                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
+                    <span ng-show="loginForm.username.$invalid && (loginForm.username.$dirty || isClicked)" class="errorText">Username is required.</span>
+                    <div class="wrap-input100 validate-input" >
+                        <input class="input100" type="text" name="username" placeholder="Username" ng-model="username"
+                               ng-class="{ 'has-error' : loginForm.username.$invalid && (loginForm.username.$dirty || isClicked) }" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <i class="fa fa-user" aria-hidden="true"></i>
                             </span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                        <input class="input100" type="password" name="pass" placeholder="Password">
+                    <span ng-show="loginForm.pass.$invalid && (loginForm.pass.$dirty || isClicked)" class="errorText">Password is required.</span>
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" type="password" name="pass" placeholder="Password" ng-model="password"
+                               ng-class="{'has-error' : loginForm.pass.$invalid && (loginForm.pass.$dirty || isClicked)}" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -46,9 +48,7 @@
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Login
-                        </button>
+                        <input class="login100-form-btn" type="submit" id="submit" value="Log In" ng-click="isClicked=true">
                     </div>
 
                     <div class="text-center p-t-12">
@@ -65,4 +65,4 @@
     </div>
 
 </body>
-</html>
+
