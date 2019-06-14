@@ -40,3 +40,7 @@ li a.menu:hover:not(.active) {
 label{
     margin: 0px;
 }
+
+#InterPoint{
+    width: 115px;
+}
