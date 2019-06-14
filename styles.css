@@ -44,3 +44,25 @@ label{
 #InterPoint{
     width: 115px;
 }
+
+.pointDiv{
+    width: 358px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    padding: 3px;
+    margin: 10px;
+}
+
+.pointName{
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #57b846;
+    width: 100%;
+    text-align: center;
+}
+.pointRank{
+    font-size: 20px;
+    font-weight: bold;
+    color: #57b846;
+}

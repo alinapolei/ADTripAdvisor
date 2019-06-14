@@ -188,6 +188,20 @@ iframe {
   justify-content: space-between;
   padding: 100px 130px 33px 95px;
 }
+.wrap-content{
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 80px 20px 80px;
+}
 
 /*------------------------------------------------------------------
 [  ]*/
