@@ -1,10 +1,25 @@
 <div class="limiter">
     <div class="container-login100">
-        <div class="wrap-content">
-            <div ng-repeat="point in points" class="pointDiv">
-                <label class="pointName" ng-bind="point.name"></label></br>
-                <img ng-style="{'height': '350px', 'width': '350px'}" ng-src="{{point.main_photo}}"/><br>
-                {{(point.description.length>225)?(point.description|limitTo : 225)+' ...':(point.description)}}</br>
+        <div class="wrap-content" style="display: block">
+            <div>
+                <div ng-repeat="point in points" class="pointDiv">
+                    <div class="pointTopBar" ng-click="select(point.poi_id)">
+                        <label class="pointName" ng-bind="point.name"></label></br>
+                        <img class="pointImage" ng-style="{'height': '350px', 'width': '350px'}" ng-src="{{point.main_photo}}"/><br>
+                    </div>
+                    {{(point.description.length>225)?(point.description|limitTo : 225)+' ...':(point.description)}}</br>
+                    <div style="display: flex">
+                        <div style="width: 40px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
+                        <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pointDetails" ng-repest="point in selectedPoint" ng-show="selectedPoint.length==1">
+                <img class="pointImage" ng-style="{'height': '350px', 'width': '350px'}" ng-src="{{point.main_photo}}"/><br>
+
+                Name: <label class="pointName" ng-bind="point.name"></label></br>
+                Description: {{point.description}}</br>
                 <div style="display: flex">
                     <div style="width: 40px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
                     <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>

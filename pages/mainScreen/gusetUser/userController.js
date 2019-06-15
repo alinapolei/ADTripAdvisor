@@ -2,6 +2,7 @@ serverUrl = "http://localhost:3000";
 angular.module("myApp")
     .controller("userController", function ($scope, $http) {
         $scope.points=[];
+        $scope.selectedPoint=[];
         $http.get(serverUrl + "/getRandom")
             .then(function (response) {
                 //$scope.points=response.data;
@@ -20,4 +21,10 @@ angular.module("myApp")
             }, function (error) {
                 alert(error.data);
             });
+        $scope.select = function (id) {
+            var foundpoint = $scope.points.find(obj => {
+                return obj.poi_id === id
+            });
+            $scope.selectedPoint.push(foundpoint);
+        }
     });

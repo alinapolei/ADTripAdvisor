@@ -66,3 +66,7 @@ label{
     font-weight: bold;
     color: #57b846;
 }
+.pointTopBar:hover{
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
