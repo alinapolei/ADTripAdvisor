@@ -30,8 +30,8 @@ angular.module("myApp" )
             var questions =["what was your childhood nickname?","Do you want to retake this course?"]
             if (isValid) {
               var req=  {
-                    firstname: $scope.firstName,
-                    lastname:$scope.lastName,
+                    "first name": $scope.firstName,
+                    "last name":$scope.lastName,
                     city:$scope.city,
                     country:$scope.country,
                     email: $scope.email,
@@ -41,7 +41,9 @@ angular.module("myApp" )
                     answer: [$scope.quest1,$scope.quest2],
                     interests : $scope.selected,
               };
-                console.log(req);
+                //console.log(req);
+                $http.post(serverUrl+'/register', req).then(()=>{console.log("success")}, ()=>{console.log("eror")});
+
             }
             else
                 console.log("eror");
