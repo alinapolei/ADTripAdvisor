@@ -2,6 +2,7 @@ angular.module("myApp")
     .controller("loginController", function ($scope, $http, $window) {
         //$scope.usename;
         //$scope.password;
+        serverUrl = "http://localhost:3000"
         $scope.submit = function(isValid){
             if(isValid){
                 alert($scope.username + " " + $scope.password);
@@ -9,7 +10,7 @@ angular.module("myApp")
                     username : $scope.username,
                     password : $scope.password}];
                 console.log(user);
-                $http.post('/login', user)
+                $http.post(serverUrl + '/login', user)
                     .then(
                         function () {$window.alert("good");},
                         function () {$window.alert("error");});
