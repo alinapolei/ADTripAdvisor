@@ -7,8 +7,8 @@ angular.module("myApp")
                 alert($scope.username + " " + $scope.password);
                 var user =[{
                     username : $scope.username,
-                    password : $scope.password}]
-                console.log(user)
+                    password : $scope.password}];
+                console.log(user);
                 $http.post('/login', user)
                     .then(
                         function () {$window.alert("good");},

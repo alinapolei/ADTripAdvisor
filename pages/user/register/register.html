@@ -99,7 +99,7 @@
                     </span>
                 </div>
 
-                <label style="width: 450px" for="quest1" > Question 1: what was your childhood nickname?  </label>
+                <label style="width: 450px" for="quest1" > Question 1:<br> what was your childhood nickname?  </label>
                 <div class="wrap-input100 validate-input" >
                     <span ng-show="registerForm.quest1.$invalid && (registerForm.quest1.$dirty || isClicked)" class="errorText">answer is required.</span>
 
@@ -111,7 +111,7 @@
                     </span>
                 </div>
 
-                <label style="width: 450px" for="quest2">Question 2: Do you want to retake this course? </label>
+                <label style="width: 450px" for="quest2">Question 2:<br> Do you want to retake this course? </label>
                 <div class="wrap-input100 validate-input" >
                     <span ng-show="registerForm.quest2.$invalid && (registerForm.quest2.$dirty || isClicked)" class="errorText">answer is required.</span>
                     <input id ="quest2" class="input100" type="text" name="quest2" placeholder="answer " ng-model="quest2"
@@ -124,6 +124,7 @@
 
                 <div>
                     <label for="InterPoint">Choose at least 2 Interest Point</label>
+                    <span ng-show="selected.length<2 && isClicked" class="errorText">you must choose at lest 2.</span>
                     <label id="InterPoint" ng-repeat="x in intPoint">
                         <input ng-click="toggleSelection(x)" ng-checked="exist(x)"  type="checkbox" ng-model="selectedIntPoint" name="intPoints" style="margin-left: 25px" checklist-value="x"> {{x}}
                     </label>
