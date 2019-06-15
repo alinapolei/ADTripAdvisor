@@ -53,7 +53,7 @@
     <!-- menu -->
     <ul id="menu" class="topBar">
         <li>
-            <a href="#!home" ng-class="getClass('/home')" class="menu">Home</a>
+            <a href="#!home" ng-class="getClass('/home') || getClass('/mainScreen')" class="menu">Home</a>
         </li>
         <li>
             <a href="#!about" ng-class="getClass('/about')" class="menu">About</a>
@@ -61,7 +61,7 @@
     </ul>
 
     <div style="width: 115px">
-        <label style="margin-bottom: 0px; font-size: 13px;">Hello guest</label>
+        <label style="margin-bottom: 0px; font-size: 13px;" ng-model="name">Hello {{name}}</label>
         <div>
             <a class="txt2" href="#!user/userLogin">
                 login

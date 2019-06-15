@@ -1,8 +1,9 @@
-let app = angular.module('myApp', ["ngRoute"])
-    .controller("mainController", function ($scope, $location) {
+let app = angular.module('myApp', ["ngRoute"]);
+    app.controller("mainController", function ($scope, $location, $window, $rootScope) {
+        $rootScope.name = "guest";
         $scope.getClass = function (path) {
             return ($location.path().substr(0, path.length) === path) ? 'active' : '';
-        }
+        };
     });
 
 // config routes
@@ -11,7 +12,18 @@ app.config(function($routeProvider)  {
         // homepage
         .when('/home', {
             templateUrl: 'pages/mainScreen/gusetUser/guestScreen.html',
-            controller : 'userController as uCtrl'
+            controller : 'userController as uCtrl',
+            resolve: {
+                "check": function ($window, $location) {
+                    if ($window.sessionStorage.getItem('name') != null && $window.sessionStorage.getItem('name') != "guest") {
+                        $location.path('/mainScreen');
+                    }
+                }
+            }
+        })
+        .when('/mainScreen', {
+            templateUrl: 'pages/mainScreen/loggedUser/userLogged.html',
+            controller: 'userLoggedController as loggedController'
         })
 
         // about
