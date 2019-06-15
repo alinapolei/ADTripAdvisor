@@ -16,7 +16,7 @@
                             $rootScope.name = $scope.username;
                             $window.sessionStorage.setItem('name', $scope.username);
                             $window.sessionStorage.setItem('token', response);
-                            $location.path('/mainScreen');
+                            $location.path('/mainScreen/loggedUser');
                         },
                         function (error) {
                             $scope.isError = true;

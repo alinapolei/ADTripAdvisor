@@ -1,5 +1,5 @@
 angular.module("myApp" )
-    .controller('regController', function($scope, $http) {
+    .controller('regController', function($scope, $http,$location) {
         serverUrl = "http://localhost:3000"
         $http.get(serverUrl + "/getCountries")
         .then(function(response) {
@@ -30,8 +30,8 @@ angular.module("myApp" )
             var questions =["what was your childhood nickname?","Do you want to retake this course?"]
             if (isValid) {
               var req=  {
-                    "first name": $scope.firstName,
-                    "last name":$scope.lastName,
+                    firstname: $scope.firstName,
+                    lastname:$scope.lastName,
                     city:$scope.city,
                     country:$scope.country,
                     email: $scope.email,
@@ -43,7 +43,7 @@ angular.module("myApp" )
               };
                 //console.log(req);
                 $http.post(serverUrl+'/register', req).then(()=>{console.log("success")}, ()=>{console.log("eror")});
-
+                $location.path('/user/userLogin')
             }
             else
                 console.log("eror");

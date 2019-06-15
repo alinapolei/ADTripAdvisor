@@ -66,3 +66,6 @@ label{
     font-weight: bold;
     color: #57b846;
 }
+.imagesDiv{
+    display: flex;
+}
