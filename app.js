@@ -4,6 +4,12 @@ let app = angular.module('myApp', ["ngRoute"]);
         $scope.getClass = function (path) {
             return ($location.path().substr(0, path.length) === path) ? 'active' : '';
         };
+        $scope.logout = function () {
+            $window.sessionStorage.removeItem('name');
+            $window.sessionStorage.removeItem('token');
+            $rootScope.name = "guest";
+            $location.path('/home');
+        }
     });
 
 // config routes
