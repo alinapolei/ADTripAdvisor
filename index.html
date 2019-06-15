@@ -62,13 +62,18 @@
 
     <div style="width: 115px">
         <label style="margin-bottom: 0px; font-size: 13px;" ng-model="name">Hello {{name}}</label>
-        <div>
+        <div ng-show="name=='guest'" ng-model="name">
             <a class="txt2" href="#!user/userLogin">
                 login
             </a>
             <label style="font-size: 8px; margin-bottom: 0px">/</label>
             <a class="txt2" href="#!user/register">
                 register
+            </a>
+        </div>
+        <div ng-show="name!='guest'" ng-model="name">
+            <a class="txt2" href="" ng-click="logout()">
+                logout
             </a>
         </div>
     </div>
