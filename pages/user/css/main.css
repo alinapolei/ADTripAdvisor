@@ -197,7 +197,7 @@ iframe {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
-  display: flex;
+  display: block;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px 80px 20px 80px;
@@ -352,6 +352,7 @@ iframe {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 0 25px;
 
   -webkit-transition: all 0.4s;

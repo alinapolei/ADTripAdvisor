@@ -1,22 +1,19 @@
 angular.module("myApp")
-.controller("restorePasswordController", function ($scope) {
+
+    .controller("restorePasswordController", function ($scope,$http,) {
+
+
     serverUrl = "http://localhost:3000"
     $scope.submit=function(isvalid){
         if(isvalid){
-            var req = {
-                method: 'POST',
-                url: serverUrl + '/getPassword',
-                headers: {
-                    'Content-Type': undefined
-                },
-                data: [{ answer: $scope.quest1 }, { answer: $scope.quest2 }]
+            data={
+                username: $scope.username,
+                answers: [ $scope.quest1 ,  $scope.quest2 ]
             }
-            $http(req).then(function (response) {
-                alert(response.data);
-            }, function (error) {
-                alert(error.data);
-            });
-
+            $http.post(serverUrl+'/getPassword',data ).then((result)=>{
+              alert(result.data[0].password)
+                }
+                , ()=>{console.log("eror")});
         }
     };
 })

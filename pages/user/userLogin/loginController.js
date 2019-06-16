@@ -13,10 +13,14 @@
                 $http.post(serverUrl+ '/login', user)
                     .then(
                         function (response) {
-                            $rootScope.name = $scope.username;
-                            $window.sessionStorage.setItem('name', $scope.username);
-                            $window.sessionStorage.setItem('token', response);
-                            $location.path('/mainScreen');
+                            if(response.data == "Wrong username or password")
+                                $scope.isError = true;
+                            else {
+                                $rootScope.name = $scope.username;
+                                $window.sessionStorage.setItem('name', $scope.username);
+                                $window.sessionStorage.setItem('token', response);
+                                $location.path('/mainScreen/loggedUser');
+                            }
                         },
                         function (error) {
                             $scope.isError = true;
