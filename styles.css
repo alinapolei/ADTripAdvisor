@@ -61,10 +61,19 @@ label{
     width: 100%;
     text-align: center;
 }
+.pointNameDetails{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
 .pointRank{
     font-size: 20px;
     font-weight: bold;
     color: #57b846;
+}
+.pointTopBar:hover{
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
 }
 .imagesDiv{
     display: flex;

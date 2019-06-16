@@ -1,0 +1,32 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-content">
+            <div class="pointDetails" style="display: flex">
+                <div id="rightPointDetails" style="margin-right: 10px">
+                    <label class="pointNameDetails" ng-bind="point.name"></label></br>
+                    {{point.description}}</br>
+                    <div style="display: flex">
+                        <div style="width: 40px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
+                        <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
+                    </div>
+
+                    <div ng-repeat="review in reviews" style="margin-top: 20px;">
+                        <label style="width: 100%;">
+                            <i class="fa fa-quote-right" aria-hidden="true" style="margin-right: 5px"></i>
+                            {{review.review}}
+                            <i class="fa fa-quote-left" aria-hidden="true" style="margin-left: 5px"></i>
+                        </label>
+                        <label style="width: 100%;"> rank: {{review.rating}}</label>
+                        <label style="width: 100%;">{{review.date}}</label>
+                    </div>
+                </div>
+                <div id="leftPointDetails">
+                    <img class="pointImage" ng-style="{'height': '350px', 'width': '350px'}" ng-src="{{point.main_photo}}"/><br>
+                    <div class="container-login100-form-btn">
+                        <input class="login100-form-btn" value="add review">
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+</div>
