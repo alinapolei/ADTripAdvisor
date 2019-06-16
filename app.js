@@ -52,5 +52,9 @@ app.config(function($routeProvider)  {
             controller : 'restorePasswordController as restoreCtrl'
         })
 
+        .when('/interestPoints',{
+            templateUrl : 'pages/interestPoints/allInterestPoint.html',
+            controller : 'allInterestPointController as allIPCtrl'
+        })
         .otherwise({ redirectTo: '/home' });
 });
