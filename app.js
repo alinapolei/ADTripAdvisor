@@ -1,4 +1,4 @@
-let app = angular.module('myApp', ["ngRoute"]);
+let app = angular.module('myApp', ["ngRoute", 'ui.bootstrap']);
     app.controller("mainController", function ($scope, $location, $window, $rootScope) {
         $rootScope.name = "guest";
         $scope.getClass = function (path) {

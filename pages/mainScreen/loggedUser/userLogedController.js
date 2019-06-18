@@ -1,6 +1,6 @@
 serverUrl = "http://localhost:3000";
 angular.module("myApp")
-    .controller("userLoggedController", function ($scope, $http) {
+    .controller("userLoggedController", function ($scope, $http, $location) {
         $scope.points=[];
         $http.get(serverUrl + "/getRandom")
             .then(function (response) {
@@ -20,4 +20,7 @@ angular.module("myApp")
             }, function (error) {
                 alert(error.data);
             });
+        $scope.select = function (id) {
+            $location.path('/pointDetails/' + id);
+        }
     });

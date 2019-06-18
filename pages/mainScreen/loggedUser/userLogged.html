@@ -8,8 +8,10 @@
 
         <div class="imagesDiv">
             <div style="width: 209px;" ng-repeat="point in points" class="pointDiv">
-                <label class="pointName" ng-bind="point.name"></label></br>
-                <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
+                <div class="pointTopBar" ng-click="select(point.poi_id)">
+                    <label class="pointName" ng-bind="point.name"></label></br>
+                    <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
+                </div>
                 {{(point.description.length>100)?(point.description|limitTo : 100)+' ...':(point.description)}}</br>
                 <div style="display: flex">
                     <div style="width: 40px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
