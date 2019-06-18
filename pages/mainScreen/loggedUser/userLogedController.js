@@ -20,7 +20,7 @@ angular.module("myApp")
                                 $scope.SavedPoints.push(res.data)
                             })
                     }
-
+                    console.log($scope.SavedPoints)
                 }
             }, function (error) {
                 // called asynchronously if an error occurs

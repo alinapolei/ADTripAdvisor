@@ -61,7 +61,7 @@
                            ng-class="{ 'has-error' : registerForm.city.$invalid && (registerForm.city.$dirty || isClicked) }" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-globe" aria-hidden="true"></i>
                     </span>
                 </div>
 
@@ -73,7 +73,7 @@
                     </select>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <i class="fa fa-globe" aria-hidden="true"></i>
                     </span>
                 </div>
 
@@ -82,6 +82,10 @@
                 <div class="wrap-input100 validate-input">
                     <input type="email" name="email" class="input100" ng-model="email" placeholder="Email"
                            ng-class="{ 'has-error' : registerForm.email.$error.required  && (registerForm.email.$dirty || isClicked) }" ng-required="true">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
                 </div>
 
 
@@ -95,7 +99,7 @@
                            ng-class="{ 'has-error' : registerForm.password.$error.required && (registerForm.password.$dirty || isClicked) }"  ng-pattern ="/^[a-zA-Z0-9\s]*$/" ng-required="true" ng-minlength="5" ng-maxlength="10">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-key" aria-hidden="true"></i>
                     </span>
                 </div>
 
