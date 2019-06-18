@@ -1,0 +1,92 @@
+<div class="limiter">
+    <!-- Search form -->
+    <!-- Search form -->
+    <div class="">
+        <input type="text" placeholder="Search" aria-label="Search" ng-model="searchString" mdbInput>
+        <i class="fa fa-search" aria-hidden="true"></i>
+
+    </div>
+
+<div >
+    <div class="container-login100" style="display: inline-grid">
+        <div class="wrap-content" style="display: block">
+            <span><label style="alignment: left">Nature </label></span>
+            <div class="imagesDiv">
+                <div style="width: 209px;" ng-repeat="point in natureIOP | filter : searchString" class="pointDiv">
+                    <label class="pointName" ng-bind="point.name"></label></br>
+                    <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
+                    {{(point.description.length>100)?(point.description|limitTo : 100)+' ...':(point.description)}}</br>
+
+                    <div style="display: flex">
+                        <div style="width: 55px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
+                        <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
+                    </div>
+                </div>
+
+            </div>
+            <label ng-show="(natureIOP | filter:searchString).length == 0">No Interest Point found for this result {{searchString }}</label>
+
+        </div>
+
+        <div class="wrap-content"style="display: block;margin-top: 10px;">
+            <span><label style="alignment: left"> Food </label></span>
+            <div class="imagesDiv">
+                <div style="width: 209px;" ng-repeat="point in foodIOP |filter : searchString" class="pointDiv">
+                    <label class="pointName" ng-bind="point.name"></label></br>
+                    <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
+                    {{(point.description.length>100)?(point.description|limitTo : 100)+' ...':(point.description)}}</br>
+                    <div style="display: flex">
+                        <div style="width: 55px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point    .views"></label></br></div>
+                        <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
+                    </div>
+                </div>
+
+            </div>
+            <label ng-show="(foodIOP | filter:searchString).length == 0">No Interest Point found for this result {{searchString }}</label>
+
+        </div>
+
+    <div class="wrap-content"style="display: block;margin-top: 10px;">
+        <span><label style="alignment: left"> Museum </label></span>
+        <div class="imagesDiv">
+            <div style="width: 209px;" ng-repeat="point in museumIOP|filter : searchString"" class="pointDiv">
+                <label class="pointName" ng-bind="point.name"></label></br>
+                <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
+                {{(point.description.length>100)?(point.description|limitTo : 100)+' ...':(point.description)}}</br>
+
+                <div style="display: flex">
+                    <div style="width: 55px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point    .views"></label></br></div>
+                    <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
+                </div>
+            </div>
+
+    </div>
+        <label ng-show="(museumIOP | filter:searchString).length == 0">No Interest Point found for this result {{searchString }}</label>
+
+    </div>
+
+    <div class="wrap-content"style="display: block;margin-top: 10px;">
+        <span><label style="alignment: left"> Activity </label></span>
+        <div class="imagesDiv">
+            <div style="width: 209px;" ng-repeat="point in activityIOP|filter : searchString" class="pointDiv">
+                <label class="pointName" ng-bind="point.name"></label></br>
+                <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
+                {{(point.description.length>100)?(point.description|limitTo : 100)+' ...':(point.description)}}</br>
+
+                <div style="display: flex">
+                    <div style="width:55px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point    .views"></label></br></div>
+                    <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
+                </div>
+            </div>
+
+        </div>
+        <label ng-show="(activityIOP | filter:searchString).length ==0">No Interest Point found for this result {{searchString }}</label>
+
+    </div>
+</div>
+</div>
+    </div>
+
+    </div>
+
+</div>
