@@ -75,9 +75,13 @@ label{
     font-weight: bold;
     color: #57b846;
 }
-.pointTopBar:hover{
+.pointTopBar.big:hover{
     -webkit-transform: scale(1.02);
     transform: scale(1.02);
+}
+.pointTopBar.little:hover{
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
 }
 .imagesDiv{
     display: flex;
