@@ -56,5 +56,9 @@ app.config(function($routeProvider)  {
             controller : 'pointDetailsController as pointDetailsCtrl'
         })
 
+        .when('/interestPoints',{
+            templateUrl : 'pages/interestPoints/allInterestPoint.html',
+            controller : 'allInterestPointController as allIPCtrl'
+        })
         .otherwise({ redirectTo: '/home' });
 });

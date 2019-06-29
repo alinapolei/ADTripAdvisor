@@ -1,6 +1,34 @@
 serverUrl = "http://localhost:3000";
 angular.module("myApp")
-    .controller("userLoggedController", function ($scope, $http, $location) {
+    .controller("userLoggedController", function ($scope, $http, $window, $location) {
+        $scope.SavedPoints = [];
+        var savedpointids;
+        $http.get(serverUrl + "/private/getTwoLatestSavedPOIs", {
+            headers :{
+                "x-auth-token": $window.sessionStorage.getItem('token'),
+            }
+        })
+            .then(function (response) {
+                savedpointids=(response.data);
+                if (savedpointids.length == 0)
+                    $scope.noSavedPopint = "There are no saved points"
+                else {
+                    for (let i=0;i<savedpointids.length;i++){
+                        $http.get(serverUrl + "/getPOIInfo?tagId="+savedpointids[i].poi_id)
+                            .then((res)=>{
+                                console.log(res.data)
+                                $scope.SavedPoints.push(res.data)
+                            })
+                    }
+
+                }
+            }, function (error) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+       // $scope.noSavedPopint="You are not saved any interestPoint"
+
         $scope.points=[];
         $http.get(serverUrl + "/getRandom")
             .then(function (response) {

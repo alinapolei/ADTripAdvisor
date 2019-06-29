@@ -18,7 +18,7 @@
                             else {
                                 $rootScope.name = $scope.username;
                                 $window.sessionStorage.setItem('name', $scope.username);
-                                $window.sessionStorage.setItem('token', response);
+                                $window.sessionStorage.setItem('token', response.data);
                                 $location.path('/mainScreen/loggedUser');
                             }
                         },

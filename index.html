@@ -28,8 +28,6 @@
     <link rel="stylesheet" type="text/css" href="pages/user/css/util.css">
     <link rel="stylesheet" type="text/css" href="pages/user/css/main.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
-
-
 </head>
 <body ng-app="myApp" ng-controller="mainController">
 <!-- load angular -->
@@ -59,6 +57,9 @@
     <ul id="menu" class="topBar">
         <li>
             <a href="#!home" ng-class="getClass('/home') || getClass('/mainScreen')" class="menu">Home</a>
+        </li>
+        <li ng-show="name!='guest'">
+            <a href="#!interestPoints" ng-class="getClass('/interestPoints')" style="width: 150px" class="menu">Interest points</a>
         </li>
         <li>
             <a href="#!about" ng-class="getClass('/about')" class="menu">About</a>
