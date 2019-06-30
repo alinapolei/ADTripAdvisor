@@ -3,7 +3,11 @@
         <div class="wrap-content">
             <div class="pointDetails" style="display: flex">
                 <div id="rightPointDetails" style="margin-right: 10px">
-                    <label class="pointNameDetails" ng-bind="point.name"></label></br>
+                    <div style="display: flex;">
+                        <label class="pointNameDetails" ng-bind="point.name"></label></br>
+                        <i class="fa fa-star-o pointStarDetail" style="color: gray;" aria-hidden="true" ng-click="addFavorite(point)" ng-show="name!='guest' && !checkIsFavorite(point)"></i>
+                        <i class="fa fa-star pointStarDetail" style="color: #ffe833;" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="name!='guest' && checkIsFavorite(point)"></i>
+                    </div>
                     {{point.description}}</br>
                     <div style="display: flex">
                         <div style="margin-right: 5px"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>

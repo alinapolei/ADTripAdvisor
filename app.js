@@ -9,6 +9,11 @@ let app = angular.module('myApp', ["ngRoute", 'ui.bootstrap']);
             return ($location.path().substr(0, path.length) === path) ? 'active' : '';
         };
         $scope.logout = function () {
+            /*for (var prop in $rootScope) {
+                if (typeof $rootScope[prop] !== 'function' && prop.indexOf('$') == -1 && prop.indexOf('$$') == -1) {
+                    delete $rootScope[prop];
+                }
+            }*/
             $window.sessionStorage.removeItem('name');
             $window.sessionStorage.removeItem('token');
             $rootScope.name = "guest";
@@ -59,10 +64,13 @@ app.config(function($routeProvider)  {
             templateUrl : 'pages/pointDetails/pointDetails.html',
             controller : 'pointDetailsController as pointDetailsCtrl'
         })
-
         .when('/interestPoints',{
             templateUrl : 'pages/interestPoints/allInterestPoint.html',
             controller : 'allInterestPointController as allIPCtrl'
+        })
+        .when('/favoritePoints',{
+            templateUrl : 'pages/interestPoints/favoritesPoints/favoritesPoints.html',
+            controller : 'favoritesPointsController as favPointsCtrl'
         })
         .otherwise({ redirectTo: '/home' });
 });

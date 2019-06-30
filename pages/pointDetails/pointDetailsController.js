@@ -1,4 +1,4 @@
-app.controller("pointDetailsController", function ($scope, $routeParams, $http, $uibModal, $window, $location) {
+app.controller("pointDetailsController", function ($scope, $routeParams, $http, $uibModal, $window, $location, $rootScope) {
     $scope.point;
     $scope.reviews=[];
     $http({
@@ -62,6 +62,42 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
                 $scope.reviews.push(response.data[1]);
         }, function errorCallback(error) {
             alert(error.data())
+        });
+    }
+
+    $scope.addFavorite = function (point) {
+        $rootScope.addToFavorites(point);
+        var req = {
+            method: 'POST',
+            url: serverUrl + '/private/saveFavoritePOI',
+            headers: {
+                'x-auth-token': $window.sessionStorage.getItem('token')
+            },
+            data: {
+                poi_id : point.poi_id
+            }
+        }
+        $http(req).then(function () {
+        }, function (error) {
+            alert(error.data);
+        });
+    }
+    $scope.removeFavorite = function (point) {
+        $rootScope.removeFavorite(point);
+        var req = {
+            method: 'DELETE',
+            url: serverUrl + '/private/removeFavoritePOI',
+            headers: {
+                'x-auth-token': $window.sessionStorage.getItem('token')
+            },
+            data: {
+                poi_id : point.poi_id
+            }
+        }
+        $http(req).then(function (response) {
+            alert()
+        }, function (error) {
+            alert(error.data);
         });
     }
 });

@@ -10,10 +10,13 @@
         </select>
         <i class="fa fa-sort-numeric-desc" ng-model="isSort" ng-style="{'color': isSort ? 'black' : 'gray'}" style="margin-left: 15px" ng-click="isSort ? isSort=false : isSort=true" aria-hidden="true"></i>
         </div>
-        <div style="margin-right: 5px;">
-        <i class="fa fa-star" style="color: #ffe833; font-size: 25px" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="loggedUser!=null && loggedUser!=''"></i>
-        <label>{{favorites.length}}</label>
+        <div style="margin-right: 5px; display: flex" ng-show="loggedUser!=null && loggedUser!=''">
+            <a class="txt2" href="" ng-click="saveFavorites()" ng-show="added.length>0 || removed.length>0">save favorites</a>
+            <div ng-click="openFavorites()">
+                <i class="fa fa-star" style="color: #ffe833; font-size: 25px" aria-hidden="true"></i>
+                <label>{{favorites.length}}</label>
             </div>
+        </div>
     </div>
 
 <div >
@@ -47,12 +50,13 @@
             <span><label style="alignment: left"> Food </label></span>
             <div class="imagesDiv">
                 <div style="width: 208px;" ng-repeat="point in foodIOP |filter : searchString | orderBy : (isSort ? '-rating' : '')" class="pointDiv">
-                    <div class="pointTopBar little" ng-click="select(point.poi_id)">
-                        <div style="display: flex">
-                            <i class="fa fa-star-o pointStar" aria-hidden="true"></i>
+                    <div class="pointTopBar little" style="display: grid">
+                        <i class="fa fa-star-o pointStar" style="color: gray;" aria-hidden="true" ng-click="addToFavorites(point)" ng-show="loggedUser!=null && loggedUser!='' && !checkIsFavorite(point)"></i>
+                        <i class="fa fa-star pointStar" style="color: #ffe833;" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="loggedUser!=null && loggedUser!='' && checkIsFavorite(point)"></i>
+                        <div ng-click="select(point.poi_id)">
                             <label class="pointName" ng-bind="point.name"></label></br>
+                            <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
                         </div>
-                        <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
                     </div>
                     {{(point.description.length>100)?(point.description|limitTo : 100)+' ...':(point.description)}}</br>
                     <div style="display: flex">
@@ -70,12 +74,13 @@
         <span><label style="alignment: left"> Museum </label></span>
         <div class="imagesDiv">
             <div style="width: 208px;" ng-repeat="point in museumIOP|filter : searchString | orderBy : (isSort ? '-rating' : '')" class="pointDiv">
-                <div class="pointTopBar little" ng-click="select(point.poi_id)">
-                    <div style="display: flex">
-                        <i class="fa fa-star-o pointStar" aria-hidden="true"></i>
+                <div class="pointTopBar little" style="display: grid">
+                    <i class="fa fa-star-o pointStar" style="color: gray;" aria-hidden="true" ng-click="addToFavorites(point)" ng-show="loggedUser!=null && loggedUser!='' && !checkIsFavorite(point)"></i>
+                    <i class="fa fa-star pointStar" style="color: #ffe833;" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="loggedUser!=null && loggedUser!='' && checkIsFavorite(point)"></i>
+                    <div ng-click="select(point.poi_id)">
                         <label class="pointName" ng-bind="point.name"></label></br>
+                        <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
                     </div>
-                    <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
                 </div>
                 {{(point.description.length>100)?(point.description|limitTo : 100)+' ...':(point.description)}}</br>
 
@@ -95,12 +100,13 @@
         <span><label style="alignment: left"> Activity </label></span>
         <div class="imagesDiv">
             <div style="width: 208px;" ng-repeat="point in activityIOP|filter : searchString | orderBy : (isSort ? '-rating' : '')" class="pointDiv">
-                <div class="pointTopBar little" ng-click="select(point.poi_id)">
-                    <div style="display: flex">
-                        <i class="fa fa-star-o pointStar" aria-hidden="true"></i>
+                <div class="pointTopBar little" style="display: grid">
+                    <i class="fa fa-star-o pointStar" style="color: gray;" aria-hidden="true" ng-click="addToFavorites(point)" ng-show="loggedUser!=null && loggedUser!='' && !checkIsFavorite(point)"></i>
+                    <i class="fa fa-star pointStar" style="color: #ffe833;" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="loggedUser!=null && loggedUser!='' && checkIsFavorite(point)"></i>
+                    <div ng-click="select(point.poi_id)">
                         <label class="pointName" ng-bind="point.name"></label></br>
+                        <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
                     </div>
-                    <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>
                 </div>
                 {{(point.description.length>100)?(point.description|limitTo : 100)+' ...':(point.description)}}</br>
 

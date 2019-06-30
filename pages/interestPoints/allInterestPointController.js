@@ -1,22 +1,22 @@
 serverUrl = "http://localhost:3000";
 
 angular.module("myApp")
-    .controller("allInterestPointController", function ($scope, $http,$window, $location, $filter) {
+    .controller("allInterestPointController", function ($scope, $http,$window, $location, $rootScope) {
         $scope.activityIOP= new Array();
         $scope.foodIOP=new Array();
         $scope.natureIOP=new Array();
         $scope.museumIOP=new Array();
         $scope.searchIOP=new Array();
         $scope.filterby;
-        $scope.categories = new Array();
+        $rootScope.categories = new Array();
         $scope.isSort = false;
 
         $http.get(serverUrl + "/getInterests")
             .then(function (response) {
-                $scope.categories = response.data;
+                $rootScope.categories = response.data;
 
                 $scope.loggedUser = $window.sessionStorage.getItem('name');
-                if($scope.loggedUser != null && $scope.loggedUser != ''){
+                if($scope.loggedUser != null && $scope.loggedUser != '' && !$rootScope.favorites){
                     var req = {
                         method: 'GET',
                         url: serverUrl + '/private/getFavoritePOIs',
@@ -26,9 +26,9 @@ angular.module("myApp")
                     }
                     $http(req).then(function (response) {
                         if(response.data == "No such User")
-                            $scope.favorites = new Array();
+                            $rootScope.favorites = new Array();
                         else
-                            $scope.favorites = response.data;
+                            $rootScope.favorites = response.data;
                     }, function (error) {
                         alert(error.data);
                     });
@@ -76,21 +76,6 @@ angular.module("myApp")
             },function (error) {
             })
 
-        /*if($scope.loggedUser != null && $scope.loggedUser != '') {
-            var req = {
-                method: 'GET',
-                url: serverUrl + '/private/getNumberOfSavedPOIs',
-                headers: {
-                    'x-auth-token': $window.sessionStorage.getItem('token')
-                }
-            }
-            $http(req).then(function (response) {
-                $scope.numOfFavorites = response.data;
-            }, function (error) {
-                alert(error.data);
-            });
-        }*/
-
         $scope.select = function (id) {
             $location.path('/pointDetails/' + id);
         }
@@ -100,13 +85,59 @@ angular.module("myApp")
             return true;
         }
 
-        $scope.checkIsFavorite = function(point){
-            return $scope.favorites.includes(point);
+        $rootScope.checkIsFavorite = function(point){
+            if(point)
+                return $rootScope.favorites.includes(point.poi_id);
         }
-        $scope.addToFavorites = function (point) {
-            $scope.favorites.push(point);
+        $rootScope.added = new Array();
+        $rootScope.removed = new Array();
+        $rootScope.addToFavorites = function (point) {
+            $rootScope.favorites.push(point.poi_id);
+            $rootScope.added.push(point.poi_id);
         }
-        $scope.removeFavorite = function (point) {
-            $scope.favorites.splice($scope.favorites.indexOf(point), 1);
+        $rootScope.removeFavorite = function (point) {
+            $rootScope.favorites.splice($rootScope.favorites.indexOf(point.poi_id), 1);
+            $rootScope.removed.push(point.poi_id);
+        }
+        $rootScope.saveFavorites = function(){
+            for(i=0; i<$rootScope.added.length; i++) {
+                var req = {
+                    method: 'POST',
+                    url: serverUrl + '/private/saveFavoritePOI',
+                    headers: {
+                        'x-auth-token': $window.sessionStorage.getItem('token')
+                    },
+                    data: {
+                        poi_id : $rootScope.added[i]
+                    }
+                }
+                $http(req).then(function () {
+                }, function (error) {
+                    alert(error.data);
+                });
+            }
+            for(i=0; i<$rootScope.removed.length; i++) {
+                var req = {
+                    method: 'DELETE',
+                    url: serverUrl + '/private/removeFavoritePOI',
+                    headers: {
+                        'x-auth-token': $window.sessionStorage.getItem('token')
+                    },
+                    data: {
+                        poi_id : $rootScope.removed[i]
+                    }
+                }
+                $http(req).then(function (response) {
+                    alert()
+                }, function (error) {
+                    alert(error.data);
+                });
+            }
+            //$rootScope.added = new Array();
+            //$rootScope.removed = new Array();
+        }
+        $scope.openFavorites = function () {
+            if($rootScope.favorites.length > 0)
+                $location.path('/favoritePoints');
         }
     });

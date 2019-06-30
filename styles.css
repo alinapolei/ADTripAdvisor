@@ -73,6 +73,11 @@ label{
     font-size: 24px;
     font-weight: bold;
     text-align: center;
+    margin-right: 15px;
+}
+.pointStarDetail{
+    font-size: 25px;
+    margin-top: 5px;
 }
 .pointRank{
     font-size: 20px;
