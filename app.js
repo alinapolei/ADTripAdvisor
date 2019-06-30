@@ -1,6 +1,10 @@
 let app = angular.module('myApp', ["ngRoute", 'ui.bootstrap']);
     app.controller("mainController", function ($scope, $location, $window, $rootScope) {
-        $rootScope.name = "guest";
+        if($window.sessionStorage.getItem('name') != null && $window.sessionStorage.getItem('name')!='')
+            $rootScope.name = $window.sessionStorage.getItem('name');
+        else
+            $rootScope.name = "guest";
+
         $scope.getClass = function (path) {
             return ($location.path().substr(0, path.length) === path) ? 'active' : '';
         };

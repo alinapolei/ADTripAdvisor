@@ -6,7 +6,7 @@
                     <label class="pointNameDetails" ng-bind="point.name"></label></br>
                     {{point.description}}</br>
                     <div style="display: flex">
-                        <div style="width: 40px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
+                        <div style="margin-right: 5px"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
                         <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
                     </div>
 
@@ -17,7 +17,7 @@
                             <i class="fa fa-quote-left" aria-hidden="true" style="margin-left: 5px"></i>
                         </label>
                         <label style="width: 100%;"> rank: {{review.rating}}</label>
-                        <label style="width: 100%;">{{review.date}}</label>
+                        <label style="width: 100%;">{{review.date.substr(0,10)}}</label>
                     </div>
                 </div>
                 <div id="leftPointDetails">

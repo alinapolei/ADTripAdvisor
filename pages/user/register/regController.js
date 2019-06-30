@@ -42,7 +42,9 @@ angular.module("myApp" )
                     interests : $scope.selected,
               };
                 //console.log(req);
-                $http.post(serverUrl+'/register', req).then(()=>{console.log("success")}, ()=>{console.log("eror")});
+                $http.post(serverUrl+'/register', req).then((res)=>{
+                    console.log(res.data)},
+                    (err)=>{console.log(err.data)});
                 $location.path('/user/userLogin')
             }
             else

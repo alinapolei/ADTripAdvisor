@@ -65,6 +65,10 @@ label{
     width: 100%;
     text-align: center;
 }
+.pointStar{
+    font-size: 20px;
+    background-color: #57b846;
+}
 .pointNameDetails{
     font-size: 24px;
     font-weight: bold;
