@@ -4,6 +4,8 @@
 #title{
     padding-bottom: 0.5rem;
     margin-bottom: 0rem;
+    margin-top: 0px;
+    font-weight: normal;
 }
 #menu {
     width: 100%;
@@ -11,6 +13,7 @@
     right: 0;
     list-style-type: none;
     display: flex;
+    margin-bottom: 0px;
 }
 #menuRow{
     display: flex;
@@ -39,6 +42,7 @@ li a.menu:hover:not(.active) {
 }
 label{
     margin: 0px;
+    font-weight: normal;
 }
 
 #InterPoint{
@@ -71,10 +75,120 @@ label{
     font-weight: bold;
     color: #57b846;
 }
-.pointTopBar:hover{
+.pointTopBar.big:hover{
     -webkit-transform: scale(1.02);
     transform: scale(1.02);
+}
+.pointTopBar.little:hover{
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
 }
 .imagesDiv{
     display: flex;
 }
+
+.modalInput {
+    position: relative;
+    margin: auto;
+    width: 100%;
+}
+.modalLabel{
+    position: absolute;
+    top: 16px;
+    left: 0;
+    font-size: 16px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.modalBorder{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+}
+.input:hover {
+    background: rgba(34,50,84,0.03);
+}
+.input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.input:focus {
+    background: none;
+    outline: none;
+}
+.input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.input:focus + span + .border {
+    transform: scaleX(1);
+}
+
+.radio {
+    position: relative;
+    cursor: pointer;
+    line-height: 20px;
+    font-size: 14px;
+    margin: 15px;
+    display: inline-block;
+}
+.radio .label {
+    position: relative;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+.radio .label:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background: #225cff;
+    transform: scale(0);
+    transition: all 0.2s ease;
+    opacity: 0.08;
+    pointer-events: none;
+}
+.radio:hover .label:after {
+    transform: scale(3.6);
+}
+input[type="radio"]:checked + .label {
+    border-color: #225cff;
+}
+input[type="radio"]:checked + .label:after {
+    transform: scale(1);
+    transition: all 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9);
+    opacity: 1;
+}
+

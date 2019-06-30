@@ -28,7 +28,7 @@ angular.module("myApp" )
 
         $scope.submit = function(isValid) {
             var questions =["what was your childhood nickname?","Do you want to retake this course?"]
-            if (isValid) {
+            if (isValid && $scope.selected.length>=2) {
               var req=  {
                     firstname: $scope.firstName,
                     lastname:$scope.lastName,

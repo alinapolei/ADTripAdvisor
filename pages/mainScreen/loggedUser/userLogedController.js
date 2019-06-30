@@ -1,6 +1,6 @@
 serverUrl = "http://localhost:3000";
 angular.module("myApp")
-    .controller("userLoggedController", function ($scope, $http, $window) {
+    .controller("userLoggedController", function ($scope, $http, $window, $location) {
         $scope.SavedPoints = [];
         var savedpointids;
         $http.get(serverUrl + "/private/getTwoLatestSavedPOIs", {
@@ -20,7 +20,7 @@ angular.module("myApp")
                                 $scope.SavedPoints.push(res.data)
                             })
                     }
-                    console.log($scope.SavedPoints)
+
                 }
             }, function (error) {
                 // called asynchronously if an error occurs
@@ -48,4 +48,7 @@ angular.module("myApp")
             }, function (error) {
                 alert(error.data);
             });
-});
+        $scope.select = function (id) {
+            $location.path('/pointDetails/' + id);
+        }
+    });

@@ -1,0 +1,49 @@
+<link data-require="bootstrap-css@3.*" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+<div class="modal-header">
+    <h3>Add Review</h3>
+</div>
+<div class="modal-body">
+    choose rank:
+    <span ng-show="selectedRank==0 && isClicked" class="errorText">you must choose a rank.</span>
+    <br>
+    <div>
+        <label for="opt1" class="radio">
+            <input type="radio" name="rdo" id="opt1" class="hidden" ng-click="select(1)"/>
+            <span class="label"></span>1
+        </label>
+        <label for="opt2" class="radio">
+            <input type="radio" name="rdo" id="opt2" class="hidden" ng-click="select(2)"/>
+            <span class="label"></span>2
+        </label>
+        </label>
+        <label for="opt3" class="radio">
+            <input type="radio" name="rdo" id="opt3" class="hidden" ng-click="select(3)"/>
+            <span class="label"></span>3
+        </label>
+        </label>
+        <label for="opt4" class="radio">
+            <input type="radio" name="rdo" id="opt4" class="hidden" ng-click="select(4)"/>
+            <span class="label"></span>4
+        </label>
+        </label>
+        <label for="opt5" class="radio">
+            <input type="radio" name="rdo" id="opt5" class="hidden" ng-click="select(5)"/>
+            <span class="label"></span>5
+        </label>
+    </div>
+    <br>
+    <span ng-show="textReview.length==0 && isClicked" class="errorText" style="padding: 0px">you must enter a text.</span>
+    <div style="height: 200px">
+        <label class="modalInput">
+            <textarea name="textReview" ng-model="textReview" type="text" ng-keyup="autoExpand($event)" id="inp" class="input" placeholder="&nbsp;"></textarea>
+            <span class="modalLabel">Enter your review</span>
+            <span class="modalBorder"></span>
+        </label>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">ADD</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,4 +1,4 @@
-let app = angular.module('myApp', ["ngRoute"]);
+let app = angular.module('myApp', ["ngRoute", 'ui.bootstrap']);
     app.controller("mainController", function ($scope, $location, $window, $rootScope) {
         $rootScope.name = "guest";
         $scope.getClass = function (path) {
@@ -55,9 +55,10 @@ app.config(function($routeProvider)  {
             templateUrl : 'pages/pointDetails/pointDetails.html',
             controller : 'pointDetailsController as pointDetailsCtrl'
         })
+
         .when('/interestPoints',{
             templateUrl : 'pages/interestPoints/allInterestPoint.html',
-            controller : 'allInterestPointController as allIOPCtrl'
+            controller : 'allInterestPointController as allIPCtrl'
         })
         .otherwise({ redirectTo: '/home' });
 });

@@ -68,8 +68,8 @@
                 <span ng-show="registerForm.country.$invalid && (registerForm.country.$dirty || isClicked)" class="errorText">country is required.</span>
                 <div class="wrap-input100 validate-input">
                     <select ng-class="{ 'has-error' : registerForm.country.$invalid && (registerForm.country.$dirty || isClicked) }"
-                    id ="Country" name="country" class="input100" ng-model="country" ng-options="x for x in countries" required >
-                    <option value="" disabled selected>Select your country</option>
+                            id ="Country" name="country" class="input100" ng-model="country" ng-options="x for x in countries" required >
+                        <option value="" disabled selected>Select your country</option>
                     </select>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
