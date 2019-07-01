@@ -12,7 +12,7 @@
         </div>
         <div style="margin-right: 5px;">
             <a class="txt2" href="" ng-click="saveFavorites()" ng-show="added.length>0 || removed.length>0">save favorites</a>
-            <a class="txt2" href="" ng-click="saveSortStyle()" ng-show="sortby!=null && sortby!=''" style="margin-left: 5px">save sort style</a>
+            <a class="txt2" href="" ng-click="saveSortStyle()" ng-show="sortby!=null && sortby!='' && added.length==0 && removed.length==0" style="margin-left: 5px">save sort style</a>
             <select ng-model="sortby" ng-change="sortArray(sortby)">
                 <option value="" selected>Choose Sort Style</option>
                 <option value="NameAZ">Name A-Z</option>
@@ -32,7 +32,7 @@
 
             <div name="row" ng-repeat="n in getNumRows() track by $index">
                 <div class="imagesDiv">
-                    <div style="width: 208px;" ng-repeat="point in favoritePoints | filter : searchString | filter : filterby!=null ? filterby : '' | orderBy : (isSort ? '-rating' : '') | orderBy : sortField | limitTo : 5 : ($index*5)" class="pointDiv">
+                    <div style="width: 208px;" ng-repeat="point in favoritePoints | filter : searchString | filter : filterby!=null ? filterby : '' | orderBy : (isSort ? '-rating' : sortField) | limitTo : 5 : ($index*5)" class="pointDiv">
                     <div class="pointTopBar little" style="display: grid">
                         <i class="fa fa-star-o pointStar" style="color: gray;" aria-hidden="true" ng-click="addToFavorites(point)" ng-show="!checkIsFavorite(point)"></i>
                         <i class="fa fa-star pointStar" style="color: #ffe833;" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="checkIsFavorite(point)"></i>

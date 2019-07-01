@@ -93,11 +93,17 @@ angular.module("myApp")
         $rootScope.removed = new Array();
         $rootScope.addToFavorites = function (point) {
             $rootScope.favorites.push(point.poi_id);
-            $rootScope.added.push(point.poi_id);
+            if($rootScope.removed.includes(point.poi_id))
+                $rootScope.removed.splice($rootScope.removed.indexOf(point.poi_id), 1);
+            else
+                $rootScope.added.push(point.poi_id);
         }
         $rootScope.removeFavorite = function (point) {
             $rootScope.favorites.splice($rootScope.favorites.indexOf(point.poi_id), 1);
-            $rootScope.removed.push(point.poi_id);
+            if($rootScope.added.includes(point.poi_id))
+                $rootScope.added.splice($rootScope.added.indexOf(point.poi_id), 1);
+            else
+                $rootScope.removed.push(point.poi_id);
         }
         $rootScope.saveFavorites = function(){
             for(i=0; i<$rootScope.added.length; i++) {
