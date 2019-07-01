@@ -26,4 +26,33 @@ angular.module("myApp")
         $scope.getNumRows = function () {
             return new Array(Math.ceil($rootScope.favorites.length/5));
         }
+        $scope.sortArray = function (sortby) {
+            if(! $scope.copyOfFavoritesPoints)
+                $scope.copyOfFavoritesPoints = $scope.favoritePoints;
+            $scope.isSort = false;
+            switch(sortby){
+                case "NameAZ":
+                    $scope.sortField = 'name';
+                    break;
+                case "NameZA":
+                    $scope.sortField = '-name';
+                    break;
+                case "RankUp":
+                    $scope.sortField = 'rating';
+                    break;
+                case "RankDown":
+                    $scope.sortField = '-rating';
+                    $scope.isSort = true;
+                    break;
+                case "NumViewsUp":
+                    $scope.sortField = 'views';
+                    break;
+                case "NumViewsDown":
+                    $scope.sortField = '-views';
+                    break;
+                default:
+                    $scope.sortField = '';
+                    break;
+            }
+        }
     });

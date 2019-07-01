@@ -35,7 +35,7 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
                         alert(error.data);
                     });
                 }
-            });
+            }, function(error){});
         }
         else {
             $location.path('/user/userLogin');

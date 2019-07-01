@@ -8,10 +8,20 @@
             <select ng-model="filterby" ng-options="x for x in categories">
                 <option value="" selected>All categories</option>
             </select>
-            <i class="fa fa-sort-numeric-desc" ng-model="isSort" ng-style="{'color': isSort ? 'black' : 'gray'}" style="margin-left: 15px" ng-click="isSort ? isSort=false : isSort=true" aria-hidden="true"></i>
+            <i class="fa fa-sort-numeric-desc" ng-model="isSort" ng-style="{'color': isSort ? 'black' : 'gray'}" style="margin-left: 15px" ng-click="isSort ? isSort=(sortby!=null && sortby!='') : isSort=(sortby==null || sortby=='')" aria-hidden="true"></i>
         </div>
         <div style="margin-right: 5px;">
             <a class="txt2" href="" ng-click="saveFavorites()" ng-show="added.length>0 || removed.length>0">save favorites</a>
+            <a class="txt2" href="" ng-click="saveSortStyle()" ng-show="sortby!=null && sortby!=''" style="margin-left: 5px">save sort style</a>
+            <select ng-model="sortby" ng-change="sortArray(sortby)">
+                <option value="" selected>Choose Sort Style</option>
+                <option value="NameAZ">Name A-Z</option>
+                <option value="NameZA">Name Z-A</option>
+                <option value="RankUp">Rank UP</option>
+                <option value="RankDown">Rank DOWN</option>
+                <option value="NumViewsUp">Num Views UP</option>
+                <option value="NumViewsDown">Num Views DOWN</option>
+            </select>
         </div>
     </div>
 
@@ -22,7 +32,7 @@
 
             <div name="row" ng-repeat="n in getNumRows() track by $index">
                 <div class="imagesDiv">
-                    <div style="width: 208px;" ng-repeat="point in favoritePoints | filter : searchString | filter : filterby!=null ? filterby : '' | orderBy : (isSort ? '-rating' : '') | limitTo : 5 : ($index*5)" class="pointDiv">
+                    <div style="width: 208px;" ng-repeat="point in favoritePoints | filter : searchString | filter : filterby!=null ? filterby : '' | orderBy : (isSort ? '-rating' : '') | orderBy : sortField | limitTo : 5 : ($index*5)" class="pointDiv">
                     <div class="pointTopBar little" style="display: grid">
                         <i class="fa fa-star-o pointStar" style="color: gray;" aria-hidden="true" ng-click="addToFavorites(point)" ng-show="!checkIsFavorite(point)"></i>
                         <i class="fa fa-star pointStar" style="color: #ffe833;" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="checkIsFavorite(point)"></i>
