@@ -1,15 +1,7 @@
 app.controller("pointDetailsController", function ($scope, $routeParams, $http, $uibModal, $window, $location, $rootScope) {
     $scope.point;
     $scope.reviews=[];
-    $http({
-        method: 'GET',
-        url: serverUrl + '/getPOIInfo?tagId=' + $routeParams.pointID
-    }).then(function successCallback(response) {
-        $scope.point = response.data;
-        getReviews();
-    }, function errorCallback(error) {
-        alert(error.data())
-    });
+    getPoint();
     $scope.addReview = function () {
         if ($window.sessionStorage.getItem('name') != null && $window.sessionStorage.getItem('name') != "guest") {
             var modalInstance = $uibModal.open({
@@ -38,7 +30,7 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
                         }
                     }
                     $http(req).then(function () {
-                        getReviews();
+                        getReviews(true);
                     }, function (error) {
                         alert(error.data);
                     });
@@ -50,7 +42,7 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
         }
     }
 
-    function getReviews() {
+    function getReviews(isUpdateRating) {
         $scope.reviews = [];
         $http({
             method: 'GET',
@@ -60,13 +52,35 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
                 $scope.reviews.push(response.data[0]);
             if(response.data[1])
                 $scope.reviews.push(response.data[1]);
+
+            if(isUpdateRating) {
+                var sum = 0;
+                for (i = 0; i < response.data.length; i++) {
+                    sum += response.data[i].rating;
+                }
+                $scope.point.rating = sum / response.data.length;
+            }
+
+        }, function errorCallback(error) {
+            alert(error.data())
+        });
+    }
+    function getPoint(){
+        $http({
+            method: 'GET',
+            url: serverUrl + '/getPOIInfo?tagId=' + $routeParams.pointID
+        }).then(function successCallback(response) {
+            $scope.point = response.data;
+            getReviews();
         }, function errorCallback(error) {
             alert(error.data())
         });
     }
 
     $scope.addFavorite = function (point) {
-        $rootScope.addToFavorites(point);
+        //$rootScope.addToFavorites(point);
+        if($rootScope.favorites)
+            $rootScope.favorites.push(point.poi_id);
         var req = {
             method: 'POST',
             url: serverUrl + '/private/saveFavoritePOI',
@@ -83,7 +97,9 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
         });
     }
     $scope.removeFavorite = function (point) {
-        $rootScope.removeFavorite(point);
+        //$rootScope.removeFavorite(point);
+        if($rootScope.favorites)
+            $rootScope.favorites.splice($rootScope.favorites.indexOf(point.poi_id), 1);
         var req = {
             method: 'DELETE',
             url: serverUrl + '/private/removeFavoritePOI',
@@ -95,7 +111,7 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
             }
         }
         $http(req).then(function (response) {
-            alert()
+            alert(response.data)
         }, function (error) {
             alert(error.data);
         });

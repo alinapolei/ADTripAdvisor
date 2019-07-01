@@ -5,7 +5,7 @@
         <div>
             <i class="fa fa-search" aria-hidden="true" style="margin-left: 15px"></i>
             <input type="text" placeholder="Search" aria-label="Search" ng-model="searchString" mdbInput>
-            <select ng-model="filterby" ng-options="x for x in categories" >
+            <select ng-model="filterby" ng-options="x for x in categories">
                 <option value="" selected>All categories</option>
             </select>
             <i class="fa fa-sort-numeric-desc" ng-model="isSort" ng-style="{'color': isSort ? 'black' : 'gray'}" style="margin-left: 15px" ng-click="isSort ? isSort=false : isSort=true" aria-hidden="true"></i>
@@ -19,8 +19,10 @@
     <div class="container-login100" style="display: inline-grid">
         <div class="wrap-content" style="display: block">
             <span><label style="alignment: left">All Favorites </label></span>
-            <div class="imagesDiv">
-                <div style="width: 208px;" ng-repeat="point in favoritePoints | filter : searchString | orderBy : (isSort ? '-rating' : '')" class="pointDiv" ng-show="isFilterBy(point)">
+
+            <div name="row" ng-repeat="n in getNumRows() track by $index">
+                <div class="imagesDiv">
+                    <div style="width: 208px;" ng-repeat="point in favoritePoints | filter : searchString | filter : filterby!=null ? filterby : '' | orderBy : (isSort ? '-rating' : '') | limitTo : 5 : ($index*5)" class="pointDiv">
                     <div class="pointTopBar little" style="display: grid">
                         <i class="fa fa-star-o pointStar" style="color: gray;" aria-hidden="true" ng-click="addToFavorites(point)" ng-show="!checkIsFavorite(point)"></i>
                         <i class="fa fa-star pointStar" style="color: #ffe833;" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="checkIsFavorite(point)"></i>
@@ -35,6 +37,7 @@
                         <div style="width: 55px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
                         <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

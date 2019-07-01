@@ -2,7 +2,7 @@
     <div class="container-login100">
         <div class="wrap-content">
             <div class="pointDetails" style="display: flex">
-                <div id="rightPointDetails" style="margin-right: 10px">
+                <div id="rightPointDetails" ng-model="point" style="margin-right: 10px">
                     <div style="display: flex;">
                         <label class="pointNameDetails" ng-bind="point.name"></label></br>
                         <i class="fa fa-star-o pointStarDetail" style="color: gray;" aria-hidden="true" ng-click="addFavorite(point)" ng-show="name!='guest' && !checkIsFavorite(point)"></i>

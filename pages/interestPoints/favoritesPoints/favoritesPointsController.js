@@ -23,4 +23,7 @@ angular.module("myApp")
                 return $scope.filterby.trim() == point.category.trim();
             return true;
         }
+        $scope.getNumRows = function () {
+            return new Array(Math.ceil($rootScope.favorites.length/5));
+        }
     });
