@@ -7,7 +7,7 @@
             <span><label style="alignment: left"> Recommended interestPoint </label></span>
 
         <div class="imagesDiv">
-            <div style="width: 208px;" ng-repeat="point in points" class="pointDiv">
+            <div style="width: 208px;" ng-repeat="point in points track by $index" class="pointDiv">
                 <div class="pointTopBar little" ng-click="select(point.poi_id)">
                     <label class="pointName" ng-bind="point.name"></label></br>
                     <img ng-style="{'height': '200px', 'width': '200px'}" ng-src="{{point.main_photo}}"/><br>

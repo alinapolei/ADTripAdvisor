@@ -30,16 +30,19 @@ angular.module("myApp")
        // $scope.noSavedPopint="You are not saved any interestPoint"
 
         $scope.points=[];
-        $http.get(serverUrl + "/getRandom")
+        $http.get(serverUrl + "/getInterests")
             .then(function (response) {
                 //$scope.points=response.data;
                 var i;
-                for(i=0; i<3; i++) {
+                for(i=0; i<response.data.length; i++) {
                     $http({
                         method: 'GET',
-                        url: serverUrl + '/getPOIInfo?tagId=' + response.data[i].poi_id
+                        url: serverUrl + '/getPopularPOIByInterest',
+//serverUrl + '/getPOIInfo?tagId=' + response.data[i].poi_id
+                        data: { interest : response.data[i] }
                     }).then(function successCallback(response) {
-                        $scope.points.push(response.data);
+                        if(response.data != "No such POI")
+                            $scope.points.push(response.data);
                     }, function errorCallback(error) {
                         alert(error.data())
                     });

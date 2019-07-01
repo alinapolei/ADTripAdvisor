@@ -93,10 +93,10 @@
                 <span ng-show="registerForm.password.$error.required&& (registerForm.password.$dirty || isClicked) " class="errorText"> Password is required.</span>
                 <span ng-show="registerForm.password.$error.minlength" class="errorText"> Password is too short.</span>
                 <span ng-show="registerForm.password.$error.maxlength" class="errorText"> Password is too long.</span>
-                <span ng-show="registerForm.password.$error.pattern" class="errorText"> Password must contain only number and letter .</span>
+                <span ng-show="registerForm.password.$error.pattern" class="errorText"> Password must contain numbers and letters .</span>
                 <div class="wrap-input100 validate-input" >
-                    <input class="input100" type="text" name="password" placeholder="password " ng-model="password"
-                           ng-class="{ 'has-error' : registerForm.password.$error.required && (registerForm.password.$dirty || isClicked) }"  ng-pattern ="/^[a-zA-Z0-9\s]*$/" ng-required="true" ng-minlength="5" ng-maxlength="10">
+                    <input class="input100" type="password" name="password" placeholder="password " ng-model="password"
+                           ng-class="{ 'has-error' : registerForm.password.$error.required && (registerForm.password.$dirty || isClicked) }"  ng-pattern ="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/" ng-required="true" ng-minlength="5" ng-maxlength="10">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                                 <i class="fa fa-key" aria-hidden="true"></i>
