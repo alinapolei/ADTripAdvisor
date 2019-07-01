@@ -104,14 +104,24 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
             method: 'DELETE',
             url: serverUrl + '/private/removeFavoritePOI',
             headers: {
+                'Content-Type': "application/json",
                 'x-auth-token': $window.sessionStorage.getItem('token')
             },
             data: {
                 poi_id : point.poi_id
             }
         }
+        /*var req = {
+            data: [{
+                poi_id : point.poi_id
+            }],
+            headers: {
+                'x-auth-token': $window.sessionStorage.getItem('token')
+            }
+        };
+        var url = serverUrl + '/private/removeFavoritePOI';*/
         $http(req).then(function (response) {
-            alert(response.data)
+            console.log(response.data);
         }, function (error) {
             alert(error.data);
         });

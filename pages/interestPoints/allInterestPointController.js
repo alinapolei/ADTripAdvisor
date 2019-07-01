@@ -121,6 +121,7 @@ angular.module("myApp")
                     method: 'DELETE',
                     url: serverUrl + '/private/removeFavoritePOI',
                     headers: {
+                        'Content-Type': "application/json",
                         'x-auth-token': $window.sessionStorage.getItem('token')
                     },
                     data: {
@@ -128,13 +129,13 @@ angular.module("myApp")
                     }
                 }
                 $http(req).then(function (response) {
-                    alert()
+                    console.log(response.data);
                 }, function (error) {
                     alert(error.data);
                 });
             }
-            //$rootScope.added = new Array();
-            //$rootScope.removed = new Array();
+            $rootScope.added = new Array();
+            $rootScope.removed = new Array();
         }
         $scope.openFavorites = function () {
             if($rootScope.favorites.length > 0)
