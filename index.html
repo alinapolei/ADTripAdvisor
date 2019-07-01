@@ -27,6 +27,8 @@
 
     <link rel="stylesheet" type="text/css" href="pages/user/css/util.css">
     <link rel="stylesheet" type="text/css" href="pages/user/css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="pages/about/aboutCss.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body ng-app="myApp" ng-controller="mainController">
@@ -50,6 +52,8 @@
 <script src="pages/pointDetails/addReview/addReviewController.js"></script>
 <script src="pages/interestPoints/allInterestPointController.js"></script>
 <script src="pages/interestPoints/favoritesPoints/favoritesPointsController.js"></script>
+<script src="pages/pointDetails/seeOnMap/seeOnMapController.js"></script>
+
 
 <!-- the website -->
 <h1 class="topBar" id="title">Amsterdam</h1>
@@ -60,7 +64,7 @@
         <li>
             <a href="#!home" ng-class="getClass('/home') || getClass('/mainScreen')" class="menu">Home</a>
         </li>
-        <li>
+        <li ng-show="name!='guest'">
             <a href="#!interestPoints" ng-class="getClass('/interestPoints')" style="width: 150px" class="menu">Interest points</a>
         </li>
         <li>

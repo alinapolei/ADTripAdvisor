@@ -1,7 +1,15 @@
 app.controller("pointDetailsController", function ($scope, $routeParams, $http, $uibModal, $window, $location, $rootScope) {
     $scope.point;
     $scope.reviews=[];
-    getPoint();
+    $http({
+        method: 'GET',
+        url: serverUrl + '/getPOIInfo?tagId=' + $routeParams.pointID
+    }).then(function successCallback(response) {
+        $scope.point = response.data;
+        getReviews();
+    }, function errorCallback(error) {
+        alert(error.data())
+    });
     $scope.addReview = function () {
         if ($window.sessionStorage.getItem('name') != null && $window.sessionStorage.getItem('name') != "guest") {
             var modalInstance = $uibModal.open({
@@ -30,7 +38,7 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
                         }
                     }
                     $http(req).then(function () {
-                        getReviews(true);
+                        getReviews();
                     }, function (error) {
                         alert(error.data);
                     });
@@ -126,4 +134,16 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
             alert(error.data);
         });
     }
+
+});
+
+app.config(function($routeProvider)  {
+    $routeProvider
+    .when('/seeMap', {
+        // this is a template url
+        templateUrl: "pages/pointDetails/seeOnMap/seeMap.html",
+        controller: "seeOnMapController as mapCtrl"
+    })
+        .otherwise({ redirectTo: '/home' });
+
 });

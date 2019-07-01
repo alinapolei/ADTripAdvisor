@@ -64,6 +64,7 @@ app.config(function($routeProvider)  {
             templateUrl : 'pages/pointDetails/pointDetails.html',
             controller : 'pointDetailsController as pointDetailsCtrl'
         })
+
         .when('/interestPoints',{
             templateUrl : 'pages/interestPoints/allInterestPoint.html',
             controller : 'allInterestPointController as allIPCtrl'
