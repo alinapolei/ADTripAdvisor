@@ -1,3 +1,4 @@
+
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-content">
@@ -24,9 +25,12 @@
                     <img class="pointImage" ng-style="{'height': '350px', 'width': '350px'}" ng-src="{{point.main_photo}}"/><br>
                     <div class="container-login100-form-btn">
                         <input class="login100-form-btn" value="add review" type="submit" id="submit" ng-click="addReview()">
+                        <!--<input class="login100-form-btn" value="see on map" type="submit" id="seeOnMap" ng-click="seeOnMap()">-->
+                        <a href="#!seeMap" ng-class="getClass('/seeMap')" class="menu">See on Map</a>
                     </div>
                 </div>
             </span>
-        </div>
+</div>
+</div>
     </div>
 </div>

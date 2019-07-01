@@ -1,4 +1,5 @@
 app.controller("pointDetailsController", function ($scope, $routeParams, $http, $uibModal, $window, $location) {
+
     $scope.point;
     $scope.reviews=[];
     $http({
@@ -64,4 +65,16 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
             alert(error.data())
         });
     }
+
+});
+
+app.config(function($routeProvider)  {
+    $routeProvider
+    .when('/seeMap', {
+        // this is a template url
+        templateUrl: "pages/pointDetails/seeOnMap/seeMap.html",
+        controller: "seeOnMapController as mapCtrl"
+    })
+        .otherwise({ redirectTo: '/home' });
+
 });
