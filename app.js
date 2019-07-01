@@ -1,10 +1,19 @@
 let app = angular.module('myApp', ["ngRoute", 'ui.bootstrap']);
     app.controller("mainController", function ($scope, $location, $window, $rootScope) {
-        $rootScope.name = "guest";
+        if($window.sessionStorage.getItem('name') != null && $window.sessionStorage.getItem('name')!='')
+            $rootScope.name = $window.sessionStorage.getItem('name');
+        else
+            $rootScope.name = "guest";
+
         $scope.getClass = function (path) {
             return ($location.path().substr(0, path.length) === path) ? 'active' : '';
         };
         $scope.logout = function () {
+            /*for (var prop in $rootScope) {
+                if (typeof $rootScope[prop] !== 'function' && prop.indexOf('$') == -1 && prop.indexOf('$$') == -1) {
+                    delete $rootScope[prop];
+                }
+            }*/
             $window.sessionStorage.removeItem('name');
             $window.sessionStorage.removeItem('token');
             $rootScope.name = "guest";
@@ -60,7 +69,9 @@ app.config(function($routeProvider)  {
             templateUrl : 'pages/interestPoints/allInterestPoint.html',
             controller : 'allInterestPointController as allIPCtrl'
         })
-
-
+        .when('/favoritePoints',{
+            templateUrl : 'pages/interestPoints/favoritesPoints/favoritesPoints.html',
+            controller : 'favoritesPointsController as favPointsCtrl'
+        })
         .otherwise({ redirectTo: '/home' });
 });

@@ -3,11 +3,15 @@
     <div class="container-login100">
         <div class="wrap-content">
             <div class="pointDetails" style="display: flex">
-                <div id="rightPointDetails" style="margin-right: 10px">
-                    <label class="pointNameDetails" ng-bind="point.name"></label></br>
+                <div id="rightPointDetails" ng-model="point" style="margin-right: 10px">
+                    <div style="display: flex;">
+                        <label class="pointNameDetails" ng-bind="point.name"></label></br>
+                        <i class="fa fa-star-o pointStarDetail" style="color: gray;" aria-hidden="true" ng-click="addFavorite(point)" ng-show="name!='guest' && !checkIsFavorite(point)"></i>
+                        <i class="fa fa-star pointStarDetail" style="color: #ffe833;" aria-hidden="true" ng-click="removeFavorite(point)" ng-show="name!='guest' && checkIsFavorite(point)"></i>
+                    </div>
                     {{point.description}}</br>
                     <div style="display: flex">
-                        <div style="width: 40px;"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
+                        <div style="margin-right: 5px"><i class="fa fa-eye" aria-hidden="true"></i> <label ng-bind="point.views"></label></br></div>
                         <div><i class="fa fa-smile-o" aria-hidden="true"></i> <label ng-bind="point.rating"></label></br></div>
                     </div>
 
@@ -18,7 +22,7 @@
                             <i class="fa fa-quote-left" aria-hidden="true" style="margin-left: 5px"></i>
                         </label>
                         <label style="width: 100%;"> rank: {{review.rating}}</label>
-                        <label style="width: 100%;">{{review.date}}</label>
+                        <label style="width: 100%;">{{review.date.substr(0,10)}}</label>
                     </div>
                 </div>
                 <div id="leftPointDetails">
