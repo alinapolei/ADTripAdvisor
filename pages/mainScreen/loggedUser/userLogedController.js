@@ -37,12 +37,19 @@ angular.module("myApp")
                 for(i=0; i<response.data.length; i++) {
                     $http({
                         method: 'GET',
-                        url: serverUrl + '/getPopularPOIByInterest',
+                        url: serverUrl + '/getPopularPOIByInterest?tagId=' + response.data[i]
 //serverUrl + '/getPOIInfo?tagId=' + response.data[i].poi_id
-                        data: { interest : response.data[i] }
                     }).then(function successCallback(response) {
-                        if(response.data != "No such POI")
-                            $scope.points.push(response.data);
+                        if(response.data != "No such POI"){
+                            $http({
+                                method: 'GET',
+                                url: serverUrl + '/getPOIInfo?tagId=' + response.data.poi_id
+                            }).then(function successCallback(response) {
+                                $scope.points.push(response.data);
+                            }, function errorCallback(error) {
+                                alert(error.data())
+                            });
+                        }
                     }, function errorCallback(error) {
                         alert(error.data())
                     });
