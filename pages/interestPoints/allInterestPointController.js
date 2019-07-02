@@ -89,8 +89,10 @@ angular.module("myApp")
             if(point)
                 return $rootScope.favorites.includes(point.poi_id);
         }
-        $rootScope.added = new Array();
-        $rootScope.removed = new Array();
+        if(!$rootScope.added)
+            $rootScope.added = new Array();
+        if(!$rootScope.removed)
+            $rootScope.removed = new Array();
         $rootScope.addToFavorites = function (point) {
             $rootScope.favorites.push(point.poi_id);
             if($rootScope.removed.includes(point.poi_id))

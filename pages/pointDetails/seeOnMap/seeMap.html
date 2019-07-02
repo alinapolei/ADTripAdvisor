@@ -1,16 +1,26 @@
+<link data-require="bootstrap-css@3.*" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
 
+<body style="height: 600px;width: 600px;" onload="initMap()">
 <h1>Point location</h1>
-<div id="map" style="height: 500px;width: 500px"></div>
+<div id="map" style="height: 450px;width:450px;position:absolute;"></div>
 <script>
-    initMap();
+    var map;
     function initMap() {
         var option = {
             zoom: 8,
             center: {lat: 42.3601,lng:-71.0589}
         }
-        var map= new google.maps.Map(document.getElementById('map'),option)
+      map = new google.maps.Map(document.getElementById('map'),option)
     }
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAMS5nqNwMDEZHwmY1wuf2gamapy-tA8I&callback=initMap">
+<script>
+    google.maps.event.addDomListener(window, 'load', initMap);
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAND7fDV_dqDj8ucgIbUzCFwoJBF8b2paM"
+        async defer></script>
+</body>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="//maps.googleapis.com/maps/api/js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="script.js"></script>

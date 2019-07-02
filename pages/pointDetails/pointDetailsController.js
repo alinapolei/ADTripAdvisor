@@ -38,7 +38,7 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
                         }
                     }
                     $http(req).then(function () {
-                        getReviews();
+                        getReviews(true);
                     }, function (error) {
                         alert(error.data);
                     });
@@ -135,6 +135,18 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
         });
     }
 
+
+
+
+
+    $scope.seeOnMap = function () {
+            var modalInstance = $uibModal.open({
+                templateUrl: "pages/pointDetails/seeOnMap/seeMap.html",
+                controller: "seeOnMapController as seeMapCtrl",
+                size: ''
+
+                });
+    }
 });
 
 app.config(function($routeProvider)  {
