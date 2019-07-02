@@ -135,6 +135,18 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
         });
     }
 
+
+
+
+
+    $scope.seeOnMap = function () {
+            var modalInstance = $uibModal.open({
+                templateUrl: "pages/pointDetails/seeOnMap/seeMap.html",
+                controller: "seeOnMapController as seeMapCtrl",
+                size: ''
+
+                });
+    }
 });
 
 app.config(function($routeProvider)  {
