@@ -1,6 +1,44 @@
 app.controller("pointDetailsController", function ($scope, $routeParams, $http, $uibModal, $window, $location, $rootScope) {
+    $scope.cities = [
+        { id: 1,lat:52.475071, lng:9.226440 },
+        { id: 2,  lat:52.051559, lng:5.081870  },
+        { id: 3, lat:51.920552, lng:4.477048 },
+        { id: 4, lat:54.507010, lng:-7.612010 },
+        { id: 5, lat:52.374918, lng:4.895092 },
+        { id: 6, lat: 52.357994 , lng: 4.868648 },
+        { id: 7, lat:52.332100, lng:4.875690  },
+        { id: 8, lat:52.372424, lng:4.893585 },
+        { id: 9, lat:52.372424, lng:4.893585 },
+        { id: 10, lat: 52.371849, lng: 4.530260 },
+        { id: 11, lat:52.332100, lng:4.875690  },
+        { id: 12, lat:52.332100, lng:4.875690 },
+        { id: 13, lat:51.780552, lng:4.477048 },
+        { id: 14, lat:52.373170, lng:4.890660 },
+        { id: 15, lat:52.475071, lng:9.226440 },
+        { id: 16, lat:52.051559, lng:5.081870 },
+        { id: 17, lat:43.695920, lng:7.274620 },
+        { id: 18, lat:52.231640, lng:5.375210 },
+        { id: 19, lat:52.372424, lng:4.893585 },
+        { id: 20, lat:41.726060, lng:-72.722950 }
+    ];
+
     $scope.point;
     $scope.reviews=[];
+    initMap();
+
+    function initMap() {
+        var mymap = L.map('mapid').setView([52.370216, 4.895168], 13);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox.streets'
+        }).addTo(mymap);
+
+        var marker = L.marker([$scope.cities[$routeParams.pointID-1].lat, $scope.cities[$routeParams.pointID-1].lng]).addTo(mymap);
+    }
+
     $http({
         method: 'GET',
         url: serverUrl + '/getPOIInfo?tagId=' + $routeParams.pointID
@@ -134,28 +172,5 @@ app.controller("pointDetailsController", function ($scope, $routeParams, $http, 
             alert(error.data);
         });
     }
-
-
-
-
-
-    $scope.seeOnMap = function () {
-            var modalInstance = $uibModal.open({
-                templateUrl: "pages/pointDetails/seeOnMap/seeMap.html",
-                controller: "seeOnMapController as seeMapCtrl",
-                size: ''
-
-                });
-    }
-});
-
-app.config(function($routeProvider)  {
-    $routeProvider
-    .when('/seeMap', {
-        // this is a template url
-        templateUrl: "pages/pointDetails/seeOnMap/seeMap.html",
-        controller: "seeOnMapController as mapCtrl"
-    })
-        .otherwise({ redirectTo: '/home' });
 
 });

@@ -1,4 +1,13 @@
-<body onload="initMap()">
+
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""/>
+
+
+<body>
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-content">
@@ -29,13 +38,11 @@
                     <img class="pointImage" ng-style="{'height': '350px', 'width': '350px'}" ng-src="{{point.main_photo}}"/><br>
                     <div class="container-login100-form-btn">
                         <input class="login100-form-btn" value="add review" type="submit" id="submit" ng-click="addReview()">
-                        <!--<input class="login100-form-btn" value="see on map" type="submit" id="seeOnMap" ng-click="seeOnMap()">-->
-                        <a href="" ng-class="getClass('/seeMap')" class="menu" ng-click="seeOnMap()">See on Map</a>
                     </div>
                 </div>
             </span>
             </div>
-
+            <div id="mapid" style="width: 600px; height: 400px;"></div>
 </div>
     </div>
 </div>
