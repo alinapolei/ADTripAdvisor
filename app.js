@@ -9,11 +9,10 @@ let app = angular.module('myApp', ["ngRoute", 'ui.bootstrap']);
             return ($location.path().substr(0, path.length) === path) ? 'active' : '';
         };
         $scope.logout = function () {
-            /*for (var prop in $rootScope) {
-                if (typeof $rootScope[prop] !== 'function' && prop.indexOf('$') == -1 && prop.indexOf('$$') == -1) {
-                    delete $rootScope[prop];
-                }
-            }*/
+            delete $rootScope.checkIsFavorite;
+            delete $rootScope.favorites;
+            delete $rootScope.added;
+            delete $rootScope.removed;
             $window.sessionStorage.removeItem('name');
             $window.sessionStorage.removeItem('token');
             $rootScope.name = "guest";
