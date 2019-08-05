@@ -1,6 +1,6 @@
 ADTripAdvisor
 
-server side by - Ido Marko and Itay Merhav
+server side by - Ido Marko and Itay Merhav (the repository doesn't contain the server files)
 
 You can see in this site interest point in Amsterdam.
 Each interest point contains a title, descritption, rank, num views and reviews.
